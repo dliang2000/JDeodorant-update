@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>JDeodorant</name>
+	<name>JDeodorant-JLS8</name>
 	<comment></comment>
 	<projects>
+		<project>JRefactoring-Template</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
