@@ -133,6 +133,34 @@ public class BottomUpCDTMapper {
 		}
 		return false;
 	}
+	
+	private CompleteSubTreeMatch findTopCompleteSubTreeMatch(List<CompleteSubTreeMatch> solutions, CompleteSubTreeMatch newSolution) {
+		for(CompleteSubTreeMatch currentSolution : solutions) {
+			if(currentSolution.subsumes(newSolution))
+				return currentSolution;
+		}
+		
+		return null;
+	}
+	
+	private boolean isAllSubsumedByCurrentSolutions(List<CompleteSubTreeMatch> solutions, List<CompleteSubTreeMatch> newSolutions) {
+		CompleteSubTreeMatch record = null;
+		for (CompleteSubTreeMatch newSolution: newSolutions) {
+			if (isSubsumedByCurrentSolutions(solutions, newSolution)) {
+				if (record == null) { 
+					record = findTopCompleteSubTreeMatch(solutions, newSolution);
+				} else {
+					if (record != findTopCompleteSubTreeMatch(solutions, newSolution)) {
+						return false;
+					}
+				}
+				
+			}
+		}
+		return true;
+	}
+	
+	
 
 	public List<CompleteSubTreeMatch> getSolutions() {
 		return solutions;
